@@ -60,18 +60,17 @@ void RiceTree() {
     float riceDX=0, riceDY=0;//Position
     for(int riceRow=0;riceRow<3;riceRow++)
     {
-        riceY=riceY+riceDY;
         riceX=riceX+riceDX;
-
+        riceY=riceY+riceDY;
          for(int riceCol=0;riceCol<3;riceCol++)
         {
 
 
             RiceTree(riceA,riceB,riceX,riceY);
-            riceDX=riceDX+25;
+            riceDX=riceDY+50;
         }
-            RiceTree(riceA,riceB,riceX,riceY);
-            riceDY=riceDY+50;
+            //RiceTree(riceA,riceB,riceX,riceY);
+            riceDX=riceDX+25;
 
 
     }
