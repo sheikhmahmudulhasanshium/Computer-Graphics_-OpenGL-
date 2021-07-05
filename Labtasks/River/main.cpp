@@ -8,6 +8,10 @@ void Wave(float waveX,float waveY,float waveA,float waveB)
 {
         float pi=3.1416;
         float r=50;
+     for(int waveCol=0;waveCol<10;waveCol++)
+     {
+
+
         for(int waveRow=0;waveRow<10;waveRow++)
         {
             glBegin(GL_POLYGON);// Draw a Red 1x1 Square centered at origin
@@ -32,6 +36,8 @@ void Wave(float waveX,float waveY,float waveA,float waveB)
             glEnd();
             waveX=(waveX+100)*waveA;
         }
+        waveY=0;
+     }
 
 }
 void River() {
@@ -42,8 +48,9 @@ void River() {
     //for(int waveRow=0;waveRow<5;)
     {
         Wave(waveX,waveY,waveA,waveB);
-
+        //waveY=waveY+100;
     }
+    glEnd();
 
     //glVertex2f(0.3f,0.4f);
     //glVertex2f(0.1f,0.4f);
