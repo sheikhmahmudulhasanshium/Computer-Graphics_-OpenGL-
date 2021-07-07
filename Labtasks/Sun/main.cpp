@@ -91,7 +91,7 @@ void sun() {
 
 	glLineWidth(7.5);
 
-    sunRing();
+    //sunRing();
 
 	 glBegin(GL_POLYGON);// Draw a Red 1x1 Square centered at origin
         float sunX=1,sunY=1;//Size
