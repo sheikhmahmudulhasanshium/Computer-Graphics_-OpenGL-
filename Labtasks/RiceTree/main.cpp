@@ -37,9 +37,9 @@ void RiceTree(float riceA,float riceB,float riceX,float riceY) {
 
 }
 void RiceTree() {
-    float riceA=0.01, riceB=0.01;//Scale
+    float riceA=0.05, riceB=0.05;//Scale
 
-    float riceX=-400, riceY=-100;//Position
+    float riceX=100, riceY=10;//Position
 
 
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set background color to black and opaque
@@ -84,7 +84,7 @@ int main(int argc, char** argv) {
 	glutInit(&argc, argv);                 // Initialize GLUT
 	glutCreateWindow("OpenGL Setup"); // Create a window with the given title
 	glutInitWindowSize(320, 320);   // Set the window's initial width & height
-	gluOrtho2D(-500,500,-500,500);
+	gluOrtho2D(0,500,0,80);
 	glutDisplayFunc(RiceTree); // Register display callback handler for window re-paint
 	glutMainLoop();           // Enter the event-processing loop
 	return 0;
