@@ -58,19 +58,19 @@ void RiceTree() {
     glEnd();
 
     float riceDX=0, riceDY=0;//Position
-    for(int riceRow=0;riceRow<3;riceRow++)
+    for(int riceRow=0;riceRow<10;riceRow++)
     {
         riceY=riceY+riceDY;
         riceX=riceX+riceDX;
 
-         for(int riceCol=0;riceCol<3;riceCol++)
+         for(int riceCol=0;riceCol<10;riceCol++)
         {
 
 
             RiceTree(riceA,riceB,riceX,riceY);
             riceDX=riceDX+25;
         }
-            RiceTree(riceA,riceB,riceX,riceY);
+           // RiceTree(riceA,riceB,riceX,riceY);
             riceDY=riceDY+50;
 
 
@@ -84,7 +84,7 @@ int main(int argc, char** argv) {
 	glutInit(&argc, argv);                 // Initialize GLUT
 	glutCreateWindow("OpenGL Setup"); // Create a window with the given title
 	glutInitWindowSize(320, 320);   // Set the window's initial width & height
-	gluOrtho2D(0,500,0,80);
+	gluOrtho2D(-500,500,-500,500);
 	glutDisplayFunc(RiceTree); // Register display callback handler for window re-paint
 	glutMainLoop();           // Enter the event-processing loop
 	return 0;

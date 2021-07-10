@@ -218,3 +218,7 @@
 	<stddef.h>
 	<GL/gl.h>
 
+1624169028 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\street-light3.0\main.cpp
+	<windows.h>
+	<GL/glut.h>
+

@@ -1,10 +1,18 @@
- #include <windows.h>  // for MS Windows
+#include <windows.h>  // for MS Windows
 #include <GL/glut.h> // GLUT, include glu.h and gl.h
 #include <math.h>
+#include <iostream>
 /* Handler for window-repaint event. Call back when the window first appears and
 whenever the window needs to be re-painted. */
 
-float _angle1 = 0.0f;
+int _angle1 = 0;
+
+void init()
+{
+    glLoadIdentity();
+    gluOrtho2D(0, 500, 0, 500);
+}
+
 void CarTire()
 {
     //Tires
@@ -18,15 +26,14 @@ void CarTire()
         float pi = 3.1416;
         float A = (i * 2 * pi) / 200;
         float r = 2.5;
-        float x =r* cos(A);
-        float y =r* sin(A);
+        float x = r * cos(A);
+        float y = r * sin(A);
         //glVertex2f(x,y);
-        glVertex2f((140+(x*5)), (93 +(y*5)));
+        glVertex2f((140 + (x * 5)), (93 + (y * 5)));
     }
     glEnd();
     //Point
 
-    // 140=140+200;
 
     glBegin(GL_POLYGON);
     glLineWidth(7.5);
@@ -42,7 +49,7 @@ void CarTire()
         glVertex2f(x, y);
     }
     glEnd();
-    //140=140+200;
+
 
     //points
     glColor3f(1.0, 0.0, 0.0);
@@ -58,7 +65,8 @@ void CarTire()
 void CarBody()
 {
 
-    glColor3f(0.1373, 0.5725, 0.5529); //body
+    //glColor3f(0.1373, 0.5725, 0.5529); //body
+    glColor3f(0.2, 0.95, 0.4);
     glBegin(GL_POLYGON);
     glVertex2f(140, 152);
     glVertex2f(190, 152);
@@ -140,31 +148,52 @@ void CarBody()
     glVertex2f(210.5, 127);
     glEnd();
 }
-void CarForward()
+
+void fullCar()
 {
+
     CarBody();
 
     // glLoadIdentity();
     glMatrixMode(GL_MODELVIEW);
 
     glPushMatrix();
-    glTranslatef(142.5,95.5,0);
-    glRotatef(_angle1, 0.0f, 0.0f, 1.0f);
-    glTranslatef(-142.5,-95.5,0);
-    CarTire();
-    // glTranslatef(70.3f, 0.1f, 0.0f);
-    // // glRotatef(_angle1, 0.0f, 0.0f, 1.0f);
 
-    // // glTranslatef(-70.3f, -0.1f, 0.0f);
+    glTranslatef(142.5, 95.5, 0);
+    glRotatef(-_angle1, 0.0f, 0.0f, 1.0f);
+    glTranslatef(-142.5, -95.5, 0);
+    CarTire();
+    glPopMatrix();
+    // glutSwapBuffers();
+
+    glPushMatrix();
+    glTranslatef(60, 0, 0);
+
+    glTranslatef(142.5, 95.5, 0);
+    glRotatef(-_angle1, 0.0f, 0.0f, 1.0f);
+    glTranslatef(-(142.5), -95.5, 0);
+    CarTire();
     // CarTire();
+    glPopMatrix();
+}
+void CarForward()
+{
+    glMatrixMode(GL_MODELVIEW);
+
+    // init();
+    glPushMatrix();
+
+    glTranslatef(-100.5, 0, 0);
+    //glTranslatef(_angle1 % 500, 0, 0);
+    fullCar();
+
     glPopMatrix();
 
     glutSwapBuffers();
 }
 void update(int value)
 {
-
-    _angle1 += 2.0f;
+    _angle1 += 5.0f;
     glutPostRedisplay(); //Notify GLUT that the display has changed
 
     glutTimerFunc(20, update, 0); //Notify GLUT to call update again in 25 milliseconds
@@ -174,26 +203,18 @@ void display()
 {
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // Set background color to black and opaque
     glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)
-    glLineWidth(1.5);
-    // Draw a Red 1x1 Square centered at origin
-    glBegin(GL_LINES);           // Each set of 4 vertices form a quad
-    glColor3f(1.0f, 0.0f, 0.0f); // Red
-    glVertex2f(0.0f, 250.0f);    // x, y
-    glVertex2f(500.0f, 250.0f);  // x, y
-    glVertex2f(250.0f, 0.0f);    // x, y
-    glVertex2f(250.0f, 500.0f);  // x, y
-    glEnd();
 
     CarForward();
     glFlush(); // Render now
 }
 
 /* Main function: GLUT runs as a console application starting at main()  */
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
     glutInit(&argc, argv);            // Initialize GLUT
-    glutCreateWindow("OpenGL Setup"); // Create a window with the given title
-    glutInitWindowSize(800, 800);     // Set the window's initial width & height
+    glutInitWindowSize(1040, 800);     // Set the window's initial width & height
+    glutCreateWindow("Car Animation"); // Create a window with the given title
+
     gluOrtho2D(0, 500, 0, 500);
     glutDisplayFunc(display);     // Register display callback handler for window re-paint
     glutTimerFunc(20, update, 0); //Add a timer

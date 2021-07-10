@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1625677683 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\circle_rotation\main.cpp
+1625678577 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\circle_rotation\main.cpp
 	<iostream>
 	<GL/gl.h>
 	<GL/glut.h>
