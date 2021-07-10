@@ -11,8 +11,8 @@ glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)
 // Draw a Red 1x1 Square centered at origin
 glMatrixMode(GL_MODELVIEW);
 glPushMatrix();
-glTranslatef(-160.0f, 48.0f, 0.0f);
-glScalef(0.7,1,0);
+glTranslatef(-100.0f, 48.0f, 0.0f);
+glScalef(0.5,1,0);
 glBegin(GL_QUADS);
 glColor3ub(67.0f,	70.0f,	75.0f);//steel-blue-pillar
 glVertex2f(250,20);

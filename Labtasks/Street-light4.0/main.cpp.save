@@ -6,10 +6,13 @@ whenever the window needs to be re-painted. */
 
 void StreetLight() {
 
- glClearColor(0.2f, 0.4f, 0.93f, 1.0f); // Set background color to black and opaque
+glClearColor(0.2f, 0.4f, 0.93f, 1.0f); // Set background color to black and opaque
 glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)
 // Draw a Red 1x1 Square centered at origin
-
+glMatrixMode(GL_MODELVIEW);
+glPushMatrix();
+glTranslatef(-160.0f, 48.0f, 0.0f);
+glScalef(0.5,1,0);
 glBegin(GL_QUADS);
 glColor3ub(67.0f,	70.0f,	75.0f);//steel-blue-pillar
 glVertex2f(250,20);
@@ -19,9 +22,9 @@ glVertex2f(250,140);
 glEnd();
 
 glBegin(GL_QUADS);
-glColor3ub(0.0f,	70.0f,	75.0f);//steel-blue-pillar-base-holder
-glVertex2f(248,40);
-glVertex2f(257,40);
+glColor3ub(67.0f,	70.0f,	75.0f);//steel-blue-pillar-base-holder
+glVertex2f(248,45);
+glVertex2f(257,45);
 glVertex2f(260,20);
 glVertex2f(245,20);
 glEnd();
@@ -60,6 +63,7 @@ glEnd();
 
 
  glFlush(); // Render now
+ glPopMatrix();  // Render now
 }
 
 /* Main function: GLUT runs as a console application starting at main()  */
