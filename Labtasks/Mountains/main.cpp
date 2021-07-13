@@ -5,36 +5,6 @@
 /* Handler for window-repaint event. Call back when the window first appears and
 whenever the window needs to be re-painted. */
 
-void HillsForest(float moonX=10,float moonY=10,float moonA=0,float moonB=0,float moonAa=6,float moonAb=9,float moonAc=8) {
-
-	for(int i=0;i<12;i++)
-    {
-        if(i%2==0)
-        {
-
-
-            glBegin(GL_POLYGON);// Draw a Red 1x1 Square centered at origin
-            glColor3ub(0,31,26);
-            glVertex2f((((moonA+moonAa)*(moonX))),((moonB)*(moonY)));
-            glVertex2f(((moonA+moonAb)*(moonX)),((moonB+13)*(moonY)));
-            glVertex2f(((moonA+moonAc)*(moonX)),(moonB*(moonY)));
-            glEnd();
-            moonA=moonA+1;
-             if(i%6==0)
-            {
-                moonAa=moonAa+1;
-                moonAb=moonAb-2;
-                moonAc=moonAc+1;
-            }
-        }
-        else
-        {
-            moonA=moonA+2;
-        }
-
-
-    }
-}
 void Hills() {
 
     glutInitWindowSize(500,500);

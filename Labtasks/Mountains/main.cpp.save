@@ -49,14 +49,16 @@ void Hills() {
 
 
             glBegin(GL_POLYGON);// Draw a Red 1x1 Square centered at origin
-            glColor3ub(0,255,0);//hill-2
-            glVertex2f((((moonA-10)*(moonX))),((moonB)*(moonY)));
-            glVertex2f(((moonA+10)*(moonX)),(moonB*(moonY)));
-            glVertex2f(((moonA+0)*(moonX)),((moonB+10)*(moonY)));
+            glColor3ub(150,240,250);//hill-2
+            glVertex2f((((moonA-10)*(moonX))),((moonB+0)*(moonY)));
+            glVertex2f(((moonA+10)*(moonX)),((moonB+0)*(moonY)));
+            glVertex2f(((moonA+0)*(moonX)),((moonB+25)*(moonY)));
+            glVertex2f(((moonA-05)*(moonX)),((moonB+17)*(moonY)));
+
             glEnd();
 
             glBegin(GL_POLYGON);// Draw a Red 1x1 Square centered at origin
-            glColor3ub(150,240,250);
+            glColor3ub(150,240,250);//hill-1
             glVertex2f((((moonA-10+15)*(moonX))),((moonB)*(moonY)));
             glVertex2f(((moonA+0+10)*(moonX)),((moonB+20)*(moonY)));
             glVertex2f(((moonA+0+20)*(moonX)),((moonB+17)*(moonY)));

@@ -222,3 +222,8 @@
 1341006774 c:\program files (x86)\codeblocks\mingw\include\math.h
 	<_mingw.h>
 
+1624216617 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\scenery\main.cpp
+	<windows.h>
+	<GL/glut.h>
+	<math.h>
+
