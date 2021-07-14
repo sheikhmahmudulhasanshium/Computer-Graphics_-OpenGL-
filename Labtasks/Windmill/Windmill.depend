@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1626249795 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\river\main.cpp
+1625862307 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\windmill\main.cpp
 	<windows.h>
 	<GL/glut.h>
 	<math.h>
+	<iostream>
 
 1301111162 c:\program files (x86)\codeblocks\mingw\include\windows.h
 	<winresrc.h>

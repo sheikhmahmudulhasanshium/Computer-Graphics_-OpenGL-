@@ -42,8 +42,8 @@ void Wave(float waveX,float waveY,float waveA,float waveB)
 }
 void River() {
 
-    float waveX=-500,waveY=0;//Position
-    float waveA=1,waveB=1;//Scale
+    float waveX=00,waveY=0;//Position
+    float waveA=1,waveB=0.5;//Scale
 
     //for(int waveRow=0;waveRow<5;)
     {
@@ -66,20 +66,14 @@ void display() {
 	// Draw a Red 1x1 Square centered at origin
 	glBegin(GL_LINES);              // Each set of 4 vertices form a quad
 	glColor3f(1.0f, 0.0f, 0.0f); // Red
+    glVertex2f(0.0f, 250.0f);    // x, y
+	glVertex2f(500.0f,250.0f);    // x, y
+	glVertex2f(250.0f, 0.0f);    // x, y
+	glVertex2f(250.0f, 500.0f);    // x, y
 
-	glVertex2f(-500.0f, 0.0f);    // x, y
-	glVertex2f(500.0f, 0.0f);    // x, y
-
-	glVertex2f(0.0f, -500.0f);    // x, y
-	glVertex2f(0.0f, 500.0f);    // x, y
-
-    glVertex2f(0.0f, 0.0f);    // x, y
-	glVertex2f(-1.0f, 0.0f);    // x, y
-
-	glVertex2f(0.0f, 0.0f);    // x, y
-	glVertex2f(0.0f, -1.0f);
 
 	glEnd();
+
     River();
 	glFlush();  // Render now
 }
@@ -89,7 +83,7 @@ int main(int argc, char** argv) {
 	glutInit(&argc, argv);                 // Initialize GLUT
 	glutCreateWindow("River"); // Create a window with the given title
 	glutInitWindowSize(320, 320);   // Set the window's initial width & height
-	gluOrtho2D(-500,500,-500,500);
+	gluOrtho2D(0,500,0,500);
 	glutDisplayFunc(display); // Register display callback handler for window re-paint
 	glutMainLoop();           // Enter the event-processing loop
 	return 0;

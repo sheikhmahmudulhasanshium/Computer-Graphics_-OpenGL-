@@ -4,10 +4,16 @@
 #include<math.h>
 /* Handler for window-repaint event. Call back when the window first appears and
 whenever the window needs to be re-painted. */
+float _move1 = 0.0f;
 void Wave(float waveX,float waveY,float waveA,float waveB)
 {
+
         float pi=3.1416;
         float r=50;
+        glMatrixMode(GL_MODELVIEW);
+        glPushMatrix();
+        glTranslatef(_move1, 0.0f, 0.0f);
+
      for(int waveCol=0;waveCol<10;waveCol++)
      {
 
@@ -38,17 +44,18 @@ void Wave(float waveX,float waveY,float waveA,float waveB)
         }
         waveY=0;
      }
-
+     
+    glPopMatrix();
 }
 void River() {
 
     float waveX=-500,waveY=0;//Position
     float waveA=1,waveB=1;//Scale
 
-    for(int waveRow=0;waveRow<5;)
+    //for(int waveRow=0;waveRow<5;)
     {
         Wave(waveX,waveY,waveA,waveB);
-        
+        //waveY=waveY+100;
     }
     glEnd();
 
@@ -59,6 +66,17 @@ void River() {
 
 
 }
+void update_top(int value)
+{
+_move1 += 20;
+//if(_move1 > 1.5)
+{
+//_move1 = -100;
+}
+glutPostRedisplay();
+glutTimerFunc(20, update_top, 0);
+}
+
 void display() {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set background color to black and opaque
 	glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)

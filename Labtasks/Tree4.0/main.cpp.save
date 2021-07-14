@@ -8,36 +8,36 @@ void TreeBody()
 {
     glColor3ub(210.0f,105.0,30.0);//RGB chocholate
     glBegin(GL_QUADS);//body
-    glVertex2f(90,-10);
-    glVertex2f(10.5,10);
-    glVertex2f(108,90);
-    glVertex2f(95,70);
+    glVertex2f(90,(10+(-10*2.0f)));
+    glVertex2f(((0.5*10)+100),(10+(10*0.0f)));
+    glVertex2f(((0.80*10)+100),(10+(10*8.0f)));
+    glVertex2f(((-0.5*10)+100),(10+(10*6.0f)));
     glEnd();
 
     glColor3ub(139.0,69.0,19.0);//RGB_saddle-brown
     glBegin(GL_TRIANGLES);//Left_Branch
-    glVertex2f(95,70);
-    glVertex2f(65,100);
-    glVertex2f(95,64);
+    glVertex2f(((-0.5*10)+100),(10+(10*6.0f)));
+    glVertex2f(((-3.5*10)+100),(10+(10*9.0f)));
+    glVertex2f(((-0.5*10)+100),(10+(10*5.4f)));
     glEnd();
 
     glBegin(GL_TRIANGLES);//Right_Branch
-    glVertex2f(10.5,68);
-    glVertex2f(150,125);
-    glVertex2f(107,63);
+    glVertex2f(((0.5*10)+100),(10+(10*5.8f)));
+    glVertex2f(((5.0*10)+100),(10+(10*11.5f)));
+    glVertex2f(((0.7*10)+100),(10+(10*5.3f)));
     glEnd();
 
     glColor3ub(139.0,69.0,19.0);//RGB_saddle-brown
     glBegin(GL_TRIANGLES);//Right_root
-    glVertex2f(10.5,10);
-    glVertex2f(104,20);
-    glVertex2f(140,10);
+    glVertex2f(((0.5*10)+100),(10+(10*0.0f)));
+    glVertex2f(((0.4*10)+100),(10+(10*1.0f)));
+    glVertex2f(((4.0*10)+100),(10+(10*0.0f)));
     glEnd();
 
     glBegin(GL_TRIANGLES);//Left_root
-    glVertex2f(95,15);
-    glVertex2f(96,25);
-    glVertex2f(60,10);
+    glVertex2f(((-0.5*10)+100),(10+(10*0.5f)));
+    glVertex2f(((-0.4*10)+100),(10+(10*1.5f)));
+    glVertex2f(((-4.0*10)+100),(10+(10*0.0f)));
     glEnd();
 
 }
@@ -138,7 +138,7 @@ Leaf();
 /* Handler for window-repaint event. Call back when the window first appears and
 whenever the window needs to be re-painted. */
 void display() {
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set background color to black and opaque
+	glClearColor(1.0f, .0f, 0.0f, 1.0f); // Set background color to black and opaque
 	glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)
 	glLineWidth(1.5);
 	// Draw a Red 1x1 Square centered at origin
