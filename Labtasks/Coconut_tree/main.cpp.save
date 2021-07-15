@@ -12,6 +12,9 @@ void CoconutLeafStick()
     glVertex2f(315,400);
     glVertex2f(255,395);
     glEnd();
+
+     // Create and draw the curves for every 4 points
+
 }
 void CoconutLeaf()
 {
@@ -44,12 +47,12 @@ void CoconutLeafLoop()
     for(int leafNo=0;leafNo<6;leafNo++)
     {
         glTranslatef(255, 395, 0);
-        glRotatef(60, 0.0f, 0.0f, 1.0f);
+        glRotatef(30, 0.0f, 0.0f, 1.0f);//angle
         glTranslatef(-255, -395, 0);
         CoconutLeaf();
 
     }
-    
+
     glPopMatrix();
 
 }
@@ -93,10 +96,9 @@ void CoconutTree()
     //glColor3b(150,90,62);//brown-coconut
     Coconuts();
     glPopMatrix();
-
-    CoconutLog();
     CoconutLeafLoop();
-
+    Arc();
+    CoconutLog();
 }
 void display() {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // Set background color to black and opaque

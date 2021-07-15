@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1625735010 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\ricetree\main.cpp
+1626336296 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\ricetree2\main.cpp
 	<windows.h>
 	<GL/glut.h>
 
@@ -217,4 +217,8 @@
 1301111164 c:\program files (x86)\codeblocks\mingw\include\gl\glu.h
 	<stddef.h>
 	<GL/gl.h>
+
+1626336901 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\corntree\main.cpp
+	<windows.h>
+	<GL/glut.h>
 

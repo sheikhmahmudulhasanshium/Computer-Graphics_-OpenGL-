@@ -3,7 +3,25 @@
 #include<math.h>
 /* Handler for window-repaint event. Call back when the window first appears and
 whenever the window needs to be re-painted. */
+void Arc()
+{
+     int   numPoints=4;
+     float    points[4][2];
+     glColor3ub(255,0,0);
+  for (int i = 0; (i + 3) < numPoints; i += 3) {
+    // The evaluator with a stride of 3 and an order of 4
+    glMap1f(GL_MAP1_VERTEX_3, 255.0, 256.0, 258, 259, &points[i][0]);
 
+    // Draw the curve
+    glBegin(GL_POINTS);  // Use GL_LINE_STRIP instead to fill the gaps
+    {
+      for (int i = 0; i < 100; i++) {
+        glEvalCoord1f(((float) i) / 100.0);
+      }
+    }
+    glEnd();
+  }
+}
 void CoconutLeafStick()
 {
     glBegin(GL_POLYGON);
@@ -12,6 +30,9 @@ void CoconutLeafStick()
     glVertex2f(315,400);
     glVertex2f(255,395);
     glEnd();
+
+     // Create and draw the curves for every 4 points
+
 }
 void CoconutLeaf()
 {
@@ -44,7 +65,7 @@ void CoconutLeafLoop()
     for(int leafNo=0;leafNo<6;leafNo++)
     {
         glTranslatef(255, 395, 0);
-        glRotatef(60, 0.0f, 0.0f, 1.0f);
+        glRotatef(30, 0.0f, 0.0f, 1.0f);//angle
         glTranslatef(-255, -395, 0);
         CoconutLeaf();
 
@@ -93,10 +114,9 @@ void CoconutTree()
     //glColor3b(150,90,62);//brown-coconut
     Coconuts();
     glPopMatrix();
-
-    CoconutLog();
     CoconutLeafLoop();
-
+    Arc();
+    CoconutLog();
 }
 void display() {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // Set background color to black and opaque
