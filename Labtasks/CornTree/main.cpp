@@ -120,17 +120,18 @@ void CornLeafloop()
 {
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
-    for(int col=0;col<6;col++)
+    glTranslatef(40,200,0);
+    for(int row=0;row<7;row++)
     {
 
-    glTranslatef(-10.0f, 0.0f, 0.0f);   //for once
+    glTranslatef(-50.0f, 0.0f, 0.0f);   //for once
     CornLeaf();
-    for (int time = 0; time < 32; time++)
+    for (int time = 0; time <10; time++)
     {
         glTranslatef(15.0f, 0.0f, 0.0f);
         CornLeaf();
     }
-    glTranslatef(-470.0f, 30.0f, 0.0f);   //for once
+    glTranslatef(-100.0f, 30.0f, 0.0f);   //for once
     }
     glPopMatrix();
 }
@@ -151,8 +152,8 @@ int main(int argc, char** argv) {
 	glutInit(&argc, argv);                 // Initialize GLUT
 	glutCreateWindow("OpenGL Setup"); // Create a window with the given title
 	glutInitWindowSize(320, 320);   // Set the window's initial width & height
-	//gluOrtho2D(0,200,0,200);
-	gluOrtho2D(-0,500,00,500);
+	//gluOrtho2D(-500,500,-500,500);
+	gluOrtho2D(0,500,00,500);
 	glutDisplayFunc(display); // Register display callback handler for window re-paint
 	glutMainLoop();           // Enter the event-processing loop
 	return 0;
