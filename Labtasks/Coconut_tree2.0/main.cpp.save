@@ -4,64 +4,76 @@
 /* Handler for window-repaint event. Call back when the window first appears and
 whenever the window needs to be re-painted. */
 
-void CoconutLeafStick()
+void CoconutLeaf()
 {
-    glBegin(GL_POLYGON);
+    glBegin(GL_POLYGON);//lower-left-p-1
     glColor3b(0.4, 19.6, 12.5);//leaf-stick
     glVertex2f(255,400);
-    glVertex2f(315,400);
+    glVertex2f(275,380);
     glVertex2f(255,395);
     glEnd();
 
-     // Create and draw the curves for every 4 points
+    glBegin(GL_POLYGON);//lower-left-p-2
+    glColor3b(0.4, 19.6, 12.5);//leaf-stick
+    glVertex2f(273,384);
+    glVertex2f(295,324);
+    glVertex2f(273,379);
+    glEnd();
+    glBegin(GL_POLYGON);//mid-left-p-1
+    glColor3b(0.4, 19.6, 12.5);//leaf-stick
+    glVertex2f(255,400);
+    glVertex2f(275,420);
+    glVertex2f(255,395);
+    glEnd();
 
-}
-void CoconutLeaf()
-{
-    CoconutLeafStick();
+    glBegin(GL_POLYGON);
+    glColor3b(0.4, 19.6, 12.5);//leaf-stick
+    glVertex2f(273,420);
+    glVertex2f(295,360);
+    glVertex2f(273,410);
+    glEnd();
 
-    float   x1=265,y1=400;//lower-leaf-upper
-    float   x2=270,y2=375;//lower-leaf-lower
-    float   x3=x2-5,y3=y2+22;//upper-leaf-lower
-    float   x4=x1+5,y4=y1+22;//upper-leaf-upper
-
-    for(int leafNo=1;leafNo<14;leafNo++)
-    {
-        glBegin(GL_LINES);//green-leaf-lower
-        glColor3b(0.4, 19.6, 12.5);
-        glVertex2f((x1+(3*leafNo)),y1);//lower-leaf
-        glVertex2f((x2+(3*leafNo)),(y2+(leafNo*0.85)));
-
-        glVertex2f((x3+(3*leafNo)),y3);//lower-leaf
-        glVertex2f((x4+(3*leafNo)),(y4-(leafNo*0.85)));
-    }
+    glBegin(GL_POLYGON);
+    glColor3b(0.4, 19.6, 12.5);//leaf-stick
+    glVertex2f(255,400);
+    glVertex2f(275,440);
+    glVertex2f(255,395);
+    glEnd();
+    glBegin(GL_POLYGON);
+    glColor3b(0.4, 19.6, 12.5);//leaf-stick
+    glVertex2f(273,440);
+    glVertex2f(295,420);
+    glVertex2f(273,430);
     glEnd();
 
 }
-void CoconutLeafLoop()
+void CurvedLeaf()
 {
     CoconutLeaf();
+}
 
+void CoconutLeafLoop()
+{
+    //CoconutLeaf();
+    CurvedLeaf();
+   // /*
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
-    for(int leafNo=0;leafNo<6;leafNo++)
-    {
         glTranslatef(255, 395, 0);
-        glRotatef(30, 0.0f, 0.0f, 1.0f);//angle
+        glScalef(-1,1,0);
         glTranslatef(-255, -395, 0);
-        CoconutLeaf();
+        CurvedLeaf();
 
-    }
 
     glPopMatrix();
-
+   // */
 }
 void CoconutLog()
 {
     glBegin(GL_POLYGON);
     glColor3ub(139,69,19);//brown-log
     glVertex2f(250.0f, 250.0f);    // x, y
-	glVertex2f(250.0f, 400.0f);    // x, y
+	glVertex2f(253.0f, 400.0f);    // x, y
 
 	glVertex2f(255.0f, 400.0f);    // x, y-center
 	glVertex2f(260.0f, 250.0f);    // x, y
@@ -89,6 +101,7 @@ void Coconuts()
 }
 void CoconutTree()
 {
+    //CurvedLeaf();
     Coconuts();
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();

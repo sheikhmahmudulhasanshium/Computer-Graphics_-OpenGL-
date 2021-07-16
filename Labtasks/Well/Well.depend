@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1626336296 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\ricetree2\main.cpp
+1626373082 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\well\main.cpp
 	<windows.h>
 	<GL/glut.h>
+	<math.h>
 
 1301111162 c:\program files (x86)\codeblocks\mingw\include\windows.h
 	<winresrc.h>
@@ -218,7 +219,6 @@
 	<stddef.h>
 	<GL/gl.h>
 
-1626344157 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\corntree\main.cpp
-	<windows.h>
-	<GL/glut.h>
+1341006774 c:\program files (x86)\codeblocks\mingw\include\math.h
+	<_mingw.h>
 
