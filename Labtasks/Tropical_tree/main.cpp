@@ -119,7 +119,7 @@ void ScaledTropicalTree()
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glScalef(0.5,0.5,0);
-    glTranslatef(-200,400,0);
+    glTranslatef(-200,145,0);
     TropicalTree();
     glPopMatrix();
 
@@ -132,7 +132,7 @@ void TropicalTreeLoop()
     for(int tree=0;tree<05;tree++)
     {
         ScaledTropicalTree();
-        glTranslatef(40,0,0);
+        glTranslatef(100,0,0);
     }
 
     glPopMatrix();

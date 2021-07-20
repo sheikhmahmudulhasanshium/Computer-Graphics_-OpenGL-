@@ -1,8 +1,7 @@
 # depslib dependency file v1.0
-1626794611 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\tropical_tree\main.cpp
+1626800505 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\boat2.0\main.cpp
 	<windows.h>
 	<GL/glut.h>
-	<math.h>
 
 1301111162 c:\program files (x86)\codeblocks\mingw\include\windows.h
 	<winresrc.h>
@@ -218,7 +217,4 @@
 1301111164 c:\program files (x86)\codeblocks\mingw\include\gl\glu.h
 	<stddef.h>
 	<GL/gl.h>
-
-1341006774 c:\program files (x86)\codeblocks\mingw\include\math.h
-	<_mingw.h>
 
