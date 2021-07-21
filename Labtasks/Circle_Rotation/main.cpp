@@ -1,14 +1,12 @@
-#include <iostream>
 #include<GL/gl.h>
 #include <GL/glut.h>
 #include <windows.h>
 #include<math.h>
-using namespace std;
 
 float _angle1 = 0.0f;
 void drawScene() {
 glClear(GL_COLOR_BUFFER_BIT);
-glColor3d(1,0,0);
+//glColor3d(1,0,0);
 glLoadIdentity(); //Reset the drawing perspective
 glMatrixMode(GL_MODELVIEW);
 
@@ -17,20 +15,21 @@ glTranslatef(0.0f,0.0f,0.0f);
 glRotatef(_angle1, 0.0f, 0.0f,1.0f);
 glTranslatef(-0.0f,-0.0f,0.0f);
 glLineWidth(7.5);
-glBegin(GL_POLYGON);
+glBegin(GL_POINTS);
 
 for(int i=0;i<200;i++)
         {
-            /*
-            if(i%5==0)
+
+            if(i%2==0)
             {
-                glColor3f(1.0,0,1.0);
+                glColor3ub(255.0,0,0.0);
             }
             else
             {
-                glColor3ub(0,0,0);
-            }*/
-            glColor3ub(200,0,0);
+                glColor3ub(0,255,0);
+            }
+            glPointSize(10);
+           // glColor3ub(200,0,0);
             float pi=3.1416;
             float A=(i*2*pi)/200;
             float r=0.2;
