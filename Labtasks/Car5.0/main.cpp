@@ -4,7 +4,7 @@
 /* Handler for window-repaint event. Call back when the window first appears and
 whenever the window needs to be re-painted. */
 
-int _CarMoveForward = 0;
+int _CarMoveReverse = 0;
 
 void init()
 {
@@ -199,7 +199,7 @@ void fullCar()
     glPopMatrix();
 
 }
-void CarForward()
+void CarReverse()
 {
     glLineWidth(1);
     //glMatrixMode(GL_MODELVIEW);
@@ -208,32 +208,33 @@ void CarForward()
     //glPushMatrix();
 
     glTranslatef(-100.5, 0, 0);
-    //glTranslatef(_CarMoveForward % 500, 0, 0);
+    //glTranslatef(_CarMoveReverse % 500, 0, 0);
     fullCar();
 
    // glPopMatrix();
 
     //glutSwapBuffers();
 }
-void ScaledCarForward()
+void ScaledCarReverse()
 {
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
-    glScalef(0.5,0.5,0);
-    CarForward();
+    glTranslatef(500,140,0);
+    glScalef(-0.5,0.5,0);
+    CarReverse();
     glPopMatrix();
 
 }
-void MovingScaledCarForward()
+void MovingScaledCarReverse()
 {
     glMatrixMode(GL_MODELVIEW);
 
      //init();
     glPushMatrix();
     //glTranslatef(-100.5, 0, 0);
-    glTranslatef(_CarMoveForward % 550, 0, 0);
+    glTranslatef(_CarMoveReverse % 550, 0, 0);
 
-    ScaledCarForward();
+    ScaledCarReverse();
     glPopMatrix();
     //glutSwapBuffers();
 }
@@ -244,14 +245,14 @@ void TireRotate(int value)
 
     glutTimerFunc(05, TireRotate, 0); //Notify GLUT to call update again in 25 milliseconds
 }
-void MoveCarForward(int value) {
+void MoveCarReverse(int value) {
 
 
 
- _CarMoveForward += 1;
+ _CarMoveReverse -= 1;
 
 glutPostRedisplay();
-glutTimerFunc(20, MoveCarForward, 0);
+glutTimerFunc(20, MoveCarReverse, 0);
 }
 
 void display()
@@ -259,7 +260,7 @@ void display()
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // Set background color to black and opaque
     glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)
 
-    MovingScaledCarForward();
+    MovingScaledCarReverse();
     glFlush(); // Render now
 }
 
@@ -268,12 +269,12 @@ int main(int argc, char** argv)
 {
     glutInit(&argc, argv);            // Initialize GLUT
     glutInitWindowSize(1040, 800);     // Set the window's initial width & height
-    glutCreateWindow("Car Animation"); // Create a window with the given title
+    glutCreateWindow("Car Reverse Animation"); // Create a window with the given title
 
     gluOrtho2D(0, 500, 0, 500);
     glutDisplayFunc(display);     // Register display callback handler for window re-paint
     glutTimerFunc(20, TireRotate, 0); //Add a timer
-    glutTimerFunc(20, MoveCarForward, 0);
+    glutTimerFunc(20, MoveCarReverse, 0);
     glutMainLoop();               // Enter the event-processing loop
     return 0;
 }
