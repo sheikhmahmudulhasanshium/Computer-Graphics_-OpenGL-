@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1626795740 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\tropical_tree\main.cpp
+1627282144 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\diff_background\main.cpp
 	<windows.h>
 	<GL/glut.h>
 	<math.h>
