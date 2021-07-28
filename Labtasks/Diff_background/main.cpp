@@ -6,6 +6,26 @@ int _angle1 = 0;
 int _carangle = 0;
 
 int _boatMove=0;
+bool isDay=true;
+//bool isDay=false;
+
+void nightEffect()
+{
+
+
+      glBlendFunc(GL_ONE_MINUS_SRC_ALPHA, GL_SRC_ALPHA);
+        glEnable(GL_BLEND);
+        glEnable(GL_COLOR_MATERIAL);
+
+    glColor4ub(20,20,20,255);
+    glBegin(GL_QUADS);
+    glVertex2f(0,0);
+    glVertex2f(500,0);
+    glVertex2f(500,500);
+    glVertex2f(0,500);
+    glEnd();
+
+}
 void Border()
 {
     glBegin(GL_LINES);
@@ -131,24 +151,108 @@ void circle(int xx, int yy, float r)
 }
 void sun()
 {
-    glColor3ub(252, 186, 3);    //midday sun effect
-    //glColor3ub(128, 128, 128);
+    if(isDay)
+        {
+            glColor3ub(252, 186, 3);    //midday sun effect
+        }
+    else
+    {
+        glColor3ub(228, 228, 228);//moon
+    }
+
     circle(175, 440, 20);
 
 }
-void sky()
+void star()
 {
-    glBegin(GL_QUADS);
-    glColor3ub(51, 190, 255);
-    glVertex2f(0, 300);
-    glColor3ub(107, 207, 255);
-    glVertex2f(500, 300);
-    glColor3ub(0, 173, 255);
-    glVertex2f(500, 500);
-    glColor3ub(255, 250, 241);
-    glVertex2f(0, 500);
+    glLineWidth(2);
+    glBegin(GL_LINES);
+    glColor3ub(255,251,251);//white-star
+    glVertex2f(-0.075,0);
+    glVertex2f(0.075,0);
+
+    glVertex2f(-0.05,-0.075);
+    glVertex2f(0.05,0.075);
+
+    glVertex2f(0.05,-0.075);
+    glVertex2f(-0.05,0.075);
+
+    glVertex2f(0,-0.1);
+    glVertex2f(0,0.1);
 
     glEnd();
+}
+void scaledstar()
+{
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(05,490,0);
+    glScalef(15,15,0);
+    star();
+    glPopMatrix();
+}
+void scaledstarLoop()
+{
+    scaledstar();
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(5,0,0);
+
+for(int i=0;i<3;i++)
+{
+    glTranslatef(0,-20,0);
+    scaledstar();
+    for(int i=0;i<40;i++)
+    {
+        if(i%2==0)
+        {
+            glTranslatef(15,-35,0);
+            scaledstar();
+        }
+        else
+        {
+            glTranslatef(18,35,0);
+            scaledstar();
+        }
+
+    }
+    glTranslatef(-660,-35,0);
+
+}
+    glPopMatrix();
+}
+void sky()
+{
+    //cloud();
+    if(isDay)
+    {
+        glBegin(GL_QUADS);
+        glColor3ub(51, 190, 255);
+        glVertex2f(0, 300);
+        glColor3ub(107, 207, 255);
+        glVertex2f(500, 300);
+        glColor3ub(0, 173, 255);
+        glVertex2f(500, 500);
+        glColor3ub(255, 250, 241);
+        glVertex2f(0, 500);
+
+        glEnd();
+    }
+    else
+    {
+
+        glBegin(GL_QUADS);
+        glColor3ub(7, 11, 52);
+        glVertex2f(0, 300);
+        glColor3ub(0, 0, 255);
+        glVertex2f(500, 300);
+        glColor3ub(43, 47, 119);
+        glVertex2f(500, 500);
+        glColor3ub(20, 24, 82);
+        glVertex2f(0, 500);
+        glEnd();
+        scaledstarLoop();
+    }
 }
 void river()
 {
@@ -295,12 +399,17 @@ void cloud()
     // glutSwapBuffers();
 }
 
-void movingCloude()
+void movingcloud()
 {
-
+    glPushMatrix();//stationary-cloud
+    glTranslatef(10, 405, 0);
+    glScalef(0.5,0.5,0);
+    cloud();
+    glTranslatef(500,0, 0);
+    cloud();
+    glPopMatrix();
     glPushMatrix();
     glTranslatef(500, 400, 0);
-
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glScalef(0.5, 0.5, 1);
@@ -326,10 +435,19 @@ void update(int value)
 }
 void TropicalTreeLeafCircle()
 {
+    if(isDay)
+    {
+       glColor3ub(0.0, 255, 0.0);//green-leaf
+    }
+    else
+    {
+        glColor3ub(0.0, 25, 0.0);//green-leaf
+    }
+
     glBegin(GL_POLYGON);
     for (int i = 0; i < 200; i++)
     {
-        glColor3ub(0.0, 255, 0.0);//green-leaf
+
         float pi = 3.1416;
         float A = (i * 2 * pi) / 200;
         float r = 15.85;
@@ -528,23 +646,81 @@ void CarBody()
     glVertex2f(140, 152);
     glEnd();
 
-    glBegin(GL_POLYGON); //back-light
-    glColor3ub(255, 0, 0);
-    glVertex2f(110, 92);
-    glVertex2f(115, 92);
-    glVertex2f(115, 117);
-    glVertex2f(110, 117);
-    glEnd();
+    if(isDay)
+    {
+        glBegin(GL_POLYGON); //red-back-light
+        glColor3ub(255, 0, 0);
+        glVertex2f(110, 92);
+        glVertex2f(115, 92);
+        glVertex2f(115, 117);
+        glVertex2f(110, 117);
+        glEnd();
 
-    glBegin(GL_POLYGON); //window
-    glColor3ub(0, 0, 0);
-    glVertex2f(140, 152);
-    glVertex2f(190, 152);
-    glVertex2f(215, 127);
-    glVertex2f(210, 127);
-    glVertex2f(120, 127);
-    glVertex2f(130, 127);
-    glEnd();
+        glBegin(GL_POLYGON);      //blank-headlight
+        glColor3f(1.0, 1.0, 1.0); //body
+        //glColor3ub(255,250,0);
+        glVertex2f(210.5+28, 134.5-10);
+        glVertex2f(203.5+28, 135.5-10);
+        glVertex2f(203.5+28, 129-10);
+        glVertex2f(210.5+28, 127-10);
+        glEnd();
+
+    }
+    else
+    {
+        glBegin(GL_POLYGON); //back-light
+        glColor3ub(238, 0,0);
+        glVertex2f(110, 92);
+        glVertex2f(115, 92);
+        glVertex2f(115, 117);
+        glVertex2f(110, 117);
+        glEnd();
+
+        glBegin(GL_POLYGON);      //Yellow-headlight
+        glColor3f(1.0, 1.0, 1.0); //body
+        //glColor3ub(255,250,0);
+        glVertex2f(210.5+28, 134.5-10);
+        glVertex2f(203.5+28, 135.5-10);
+        glVertex2f(203.5+28, 129-10);
+        glVertex2f(210.5+28, 127-10);
+
+        glEnd();
+        glBegin(GL_POLYGON);      //Yellow-headlight
+        glColor3f(1.0, 1.0, 1.0); //body
+        glVertex2f(210.5+28+90, 134.5-10-0);
+        glVertex2f(205.5+28, 134.5-10);
+        glColor3f(0.8, 0.9, 0.0);
+        glVertex2f(205.5+28, 127-10);
+        glVertex2f(210.5+28+90, 127-10-30);
+        glEnd();
+
+    }
+    if(isDay)
+    {
+        glBegin(GL_POLYGON); //window
+        glColor3ub(0, 0, 0);
+        glVertex2f(140, 152);
+        glVertex2f(190, 152);
+        glVertex2f(215, 127);
+        glVertex2f(210, 127);
+        glVertex2f(120, 127);
+        glVertex2f(130, 127);
+        glEnd();
+    }
+    else
+    {
+        glBegin(GL_POLYGON); //window
+        glColor3ub(163, 228, 215);//gray
+        glVertex2f(140, 152);
+        glVertex2f(190, 152);
+        glVertex2f(215, 127);
+        glVertex2f(210, 127);
+        glVertex2f(120, 127);
+        glVertex2f(130, 127);
+        glEnd();
+
+    }
+
 
     glBegin(GL_POLYGON); //window-Divider
     glColor3ub(192, 192, 192);
@@ -632,7 +808,7 @@ void CarForward()
     // init();
     glPushMatrix();
 
-    glTranslatef(-142.5, 100, 0);
+    glTranslatef(-192.5, 100, 0);
     glTranslatef((_carangle / 2) % 500, 0, 0);
     glScalef(0.7, 0.7, 0);
     fullCar();
@@ -667,7 +843,6 @@ void circle1(int xx, int yy, float r)
 }
 void Roadbody()
 {
-    int x = 0, y = 0;
 
 
     glBegin(GL_POLYGON);
@@ -682,33 +857,7 @@ void Roadbody()
 
 
     glEnd();
-    ;
-    /*
-    glBegin(GL_LINES);
-    glColor3ub(255, 255, 255);
-    glVertex2f(x + 90, 140);
-    glVertex2f(y + 135, 140);
-    glEnd();
-    glBegin(GL_LINES);
-    glColor3ub(255, 255, 255);
-    glVertex2f(x + 180, 140);
-    glVertex2f(y + 225, 140);
-    glEnd();
-    glBegin(GL_LINES);
-    glColor3ub(255, 255, 255);
-    glVertex2f(x + 270, 140);
-    glVertex2f(y + 315, 140);
-    glEnd();
-    glBegin(GL_LINES);
-    glColor3ub(255, 255, 255);
-    glVertex2f(x + 360, 140);
-    glVertex2f(y + 405, 140);
-    glEnd();
-    glBegin(GL_LINES);
-    glColor3ub(255, 255, 255);
-    glVertex2f(x + 450, 140);
-    glVertex2f(y + 495, 140);
-    glEnd();*/
+
 
 }
 
@@ -775,6 +924,7 @@ void BoatBodyShell()
 }
 void BoatBody()
 {
+    glLineWidth(1);
     glBegin(GL_QUADS);
     glColor3ub(0, 0, 0);//black-base
     glVertex2f(120, 10);
@@ -803,12 +953,6 @@ void BoatBody()
 
     glBegin(GL_LINES);
     glColor3b(0, 0, 0);//black_stripe
-    /*
-    for(int i=0;i<4;i++)
-    {
-        int x1=205,y1=30,x2=200,y2=40,dx=5,dy=5;
-    }*/
-
     glVertex2f(205, 30);
     glVertex2f(200, 40);
 
@@ -842,32 +986,75 @@ void BoatBody()
 
     glEnd();
     BoatBodyShell();
-   // BoatBodyStick();
-}
-void Boat()
-{
-    glLineWidth(1);
-    //BoatBody();
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glTranslatef(10, 310, 0);
-    glScalef(0.7, 0.7, 0);
-    // glRotatef(250, 0, 0, 1);
-    BoatBody();
-    glTranslatef(310, 50, 0);
-    glScalef(0.6, 0.6, 0);
-    // glRotatef(250, 0, 0, 1);
-    BoatBody();
-    glTranslatef((_boatMove / 2) % 500, 0, 0);
-    glTranslatef(-110, 100, 0);
-    glScalef(0.3, 0.3, 0);
-    // glRotatef(250, 0, 0, 1);
-    BoatBody();
 
-    //glTranslatef((_boatMove/2) % 500, 0, 0);
-    glTranslatef(410, 0, 0);
+}
+void Boatsticks()
+{
+    // BoatBodyStick();
+    glBegin(GL_LINES);
+    glLineWidth(3);
+    glColor3ub(32,12,2);
+    glVertex2f(62,5);
+    glVertex2f(67,55);
+    glEnd();
+}
+void Boats()
+{
+    if(isDay)
+    {
+    glPushMatrix();
+     glTranslatef(310, 70, 0);
+     glTranslatef(10, 310, 0);
+    glTranslatef((-_boatMove / 6) % 500, 0, 0);
+    glTranslatef(110, 00, 0);
+
+    glScalef(0.3, 0.3, 0);
     BoatBody();
     glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-40, 60, 0);
+    glTranslatef(0, 310, 0);
+    glTranslatef(((_boatMove/4) % 500), 0, 0);
+    glScalef(0.3, 0.3, 0);
+    BoatBody();
+    glTranslatef(-500, 0, 0);
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(10, 310, 0);
+    glTranslatef(510, 30, 0);
+    glTranslatef(-(_boatMove / 6) % 520, 0, 0);
+    glScalef(0.6, 0.6, 0);
+    BoatBody();
+    glPopMatrix();
+
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(-100, 310, 0);
+    glTranslatef((_boatMove / 3) % 500, 0, 0);
+    glScalef(0.7, 0.7, 0);
+    BoatBody();
+    glPopMatrix();
+    }
+    else
+    {
+        glMatrixMode(GL_MODELVIEW);
+        glPushMatrix();
+        glTranslatef(20,175,0);
+        Boatsticks();
+
+        glScalef(0.7,0.7,0);
+        BoatBody();
+        glTranslatef(105,-2,0);
+        //glScalef(0.7,0.7,0);
+        BoatBody();
+        glLineWidth(8);
+        glTranslatef(40,0,0);
+        Boatsticks();
+        glPopMatrix();
+    }
 }
 void boatUpdate(int value)
 {
@@ -878,6 +1065,7 @@ void boatUpdate(int value)
     glutTimerFunc(20, boatUpdate, 0);
 
 }
+
 void Container(float x, float y)
 {
     glBegin(GL_POLYGON);
@@ -1130,8 +1318,10 @@ void Ship()
 void scalledship()
 {
     glPushMatrix();
+    glTranslatef(100,0,0);
     glScalef(1.4, 1.2, 0);
     glTranslatef(120, 100, 0);
+    glTranslatef((-_boatMove / 4) % 500, 0, 0);
     Ship();
     glPopMatrix();
 }
@@ -1140,8 +1330,15 @@ void scalledship()
 //add method
 void Boat2Windows()
 {
+    if(isDay)
+    {
+        glColor3ub(22, 22, 0);//yellow-window
+    }
+    else
+    {
+        glColor3ub(202, 202, 0);//yellow-window
+    }
     glBegin(GL_QUADS);
-    glColor3ub(202, 202, 0);//yellow-window
     glVertex2f(135, 35);
     glVertex2f(150, 35);
     glVertex2f(150, 50);
@@ -1268,32 +1465,28 @@ void ScaledBoat2()
 {
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
+    glTranslatef(250,0,0);
     glScalef(1.2, 1.2, 0);
+    glTranslatef((-_boatMove / 3) % 500, 0, 0);
     Boat2();
     glPopMatrix();
 }
 
 void output(void)
 {
+
     glClearColor(1.0, 1.0, 1.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     glLineWidth(5);
     sky();
     Border();
     scaledmountain();
-
-    /*SmallMountain(0, 0);
-    SmallMountain(140, 0);
-    SmallMountain(155, -2);
-    SmallMountain(310, 03);
-    SmallMountain(335, 07);*/
-
     sun();
-    movingCloude();
+    movingcloud();
     river();
 
     road();
-    Boat();
+    Boats();
     //   tree();
     scalledship();
     TropicalTreeLoop();
@@ -1301,10 +1494,53 @@ void output(void)
     CarForward();
     fullBadh3layer();
     ScaledBoat2();
+     //nightEffect();
+   // glDisable(GL_LIGHTING);//Enable Light Effect
+
     glFlush();
 }
+void allupdates()
+{
+    glutTimerFunc(20, update, 0); //Add a timer
+    glutTimerFunc(20, carupdate, 0);
+    glutTimerFunc(20, boatUpdate, 0);
 
+}
+void daynightmodechanger(int val)
+{
+    //isDay=false;
+    glutDisplayFunc(output);
+    glutPostRedisplay();
+    glutTimerFunc(500, daynightmodechanger, 0);
+}
 
+void handleKeypress(unsigned char key, int x, int y) {
+
+	switch (key) {
+
+        case 'd':
+
+            //glClearColor(1.0,1.0,1.0,1.0);
+            isDay=true;
+            glutDisplayFunc(output);
+            //allupdates();
+            glutTimerFunc(10000,daynightmodechanger,0);
+
+            glutPostRedisplay();
+            // glutDisplayFunc(day);
+            //day();
+            break;
+        case 'n':
+            //glClearColor(0.0,0.0,0.0,1.0);
+            isDay=false;
+            glutDisplayFunc(output);
+            //allupdates();
+            glutTimerFunc(10000,daynightmodechanger,0);
+
+            glutPostRedisplay();
+            break;
+	}
+}
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
@@ -1314,10 +1550,12 @@ int main(int argc, char** argv)
     glutInitWindowPosition(300, 100);
     glutCreateWindow("Highway");
     gluOrtho2D(0, 500, 0, 500);
+    //gluOrtho2D(-1000,1000,-1000,1000);
     glutDisplayFunc(output);
-    glutTimerFunc(20, update, 0); //Add a timer
-    glutTimerFunc(20, carupdate, 0);
-    glutTimerFunc(20, boatUpdate, 0);
+    allupdates();
+    //glutTimerFunc(10000,daynightmodechanger,0);
+       glutKeyboardFunc(handleKeypress);
     glutMainLoop();
     return 0;
 }
+

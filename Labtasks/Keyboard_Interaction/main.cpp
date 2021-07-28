@@ -165,7 +165,7 @@ int main(int argc, char** argv) {
    glutCreateWindow("Basic Animation");
    glutDisplayFunc(display);
    init();
-   glutSpecialFunc(SpecialInput);
+   //glutSpecialFunc(SpecialInput);
    glutKeyboardFunc(handleKeypress);
 
    glutMainLoop();

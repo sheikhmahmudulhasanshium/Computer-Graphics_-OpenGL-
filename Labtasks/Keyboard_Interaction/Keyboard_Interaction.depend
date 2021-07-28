@@ -1,8 +1,14 @@
 # depslib dependency file v1.0
-1627500024 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\diff_background\main.cpp
-	<windows.h>
+1627493166 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\keyboard_interaction\main.cpp
+	<GL/gl.h>
 	<GL/glut.h>
-	<math.h>
+
+1301111164 c:\program files (x86)\codeblocks\mingw\include\gl\gl.h
+
+976692172 c:\program files (x86)\codeblocks\mingw\include\gl\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
 
 1301111162 c:\program files (x86)\codeblocks\mingw\include\windows.h
 	<winresrc.h>
@@ -208,17 +214,7 @@
 1301111156 c:\program files (x86)\codeblocks\mingw\include\oleidl.h
 	<objfwd.h>
 
-976692172 c:\program files (x86)\codeblocks\mingw\include\gl\glut.h
-	<windows.h>
-	<GL/gl.h>
-	<GL/glu.h>
-
-1301111164 c:\program files (x86)\codeblocks\mingw\include\gl\gl.h
-
 1301111164 c:\program files (x86)\codeblocks\mingw\include\gl\glu.h
 	<stddef.h>
 	<GL/gl.h>
-
-1341006774 c:\program files (x86)\codeblocks\mingw\include\math.h
-	<_mingw.h>
 
