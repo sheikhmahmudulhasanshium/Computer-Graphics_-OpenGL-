@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include <GL/gl.h>
 #include <GL/glut.h>
+#include<math.h>
 int _move = 0;
 bool ob1Move = false;
 bool ob2Move = false;

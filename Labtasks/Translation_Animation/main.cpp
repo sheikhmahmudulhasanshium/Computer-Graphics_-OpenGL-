@@ -15,12 +15,28 @@ glMatrixMode(GL_MODELVIEW);
 
 
  glPushMatrix();
-glTranslatef(_move, 0.0f, 0.0f);
-glBegin(GL_QUADS);
+glTranslatef(0.0, _move, 0.0f);
+glBegin(GL_QUADS);//body
 glVertex2f(0.1f, 0.0f);
 glVertex2f(0.5f, 0.0f);
-glVertex2f(0.5f, 0.2f);
-glVertex2f(0.1f, 0.2);
+glVertex2f(0.5f, 0.5f);
+glVertex2f(0.1f, 0.5);
+glEnd();
+glBegin(GL_TRIANGLES);//head
+glColor3ub(0,255,0);
+glVertex2f(0.5f, 0.5f);
+glVertex2f(0.3f,0.8f);
+glVertex2f(0.1f, 0.5);
+glEnd();
+glBegin(GL_TRIANGLES);//right-fin
+glVertex2f(0.5f, 0.0f);
+glVertex2f(0.5f, 0.1f);
+glVertex2f(0.53f, 0.0f);
+glEnd();
+glBegin(GL_TRIANGLES);//left-fin
+glVertex2f(0.1f, 0.0f);
+glVertex2f(0.1f, 0.1f);
+glVertex2f(0.07f, 0.0f);
 glEnd();
 glPopMatrix();
 glutSwapBuffers();
