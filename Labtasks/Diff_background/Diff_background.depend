@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1627500113 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\diff_background\main.cpp
+1628055597 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\diff_background\main.cpp
 	<windows.h>
 	<GL/glut.h>
 	<math.h>

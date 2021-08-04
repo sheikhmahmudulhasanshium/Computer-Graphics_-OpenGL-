@@ -9,23 +9,6 @@ int _boatMove=0;
 bool isDay=true;
 //bool isDay=false;
 
-void nightEffect()
-{
-
-
-      glBlendFunc(GL_ONE_MINUS_SRC_ALPHA, GL_SRC_ALPHA);
-        glEnable(GL_BLEND);
-        glEnable(GL_COLOR_MATERIAL);
-
-    glColor4ub(20,20,20,255);
-    glBegin(GL_QUADS);
-    glVertex2f(0,0);
-    glVertex2f(500,0);
-    glVertex2f(500,500);
-    glVertex2f(0,500);
-    glEnd();
-
-}
 void Border()
 {
     glBegin(GL_LINES);
@@ -1476,7 +1459,7 @@ void output(void)
 {
 
     glClearColor(1.0, 1.0, 1.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT);
     glLineWidth(5);
     sky();
     Border();
