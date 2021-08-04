@@ -8,6 +8,45 @@ int _carangle = 0;
 float _angle2 = 1;
 int _boatMove = 0;
 bool isDay = true;
+bool fullscreen=true;
+   void handleKeypress(unsigned char key, int x, int y) {
+
+        switch (key) {
+
+        case 'd':
+
+            //glClearColor(1.0,1.0,1.0,1.0);
+            isDay = true;
+           // glutDisplayFunc(output);
+            //allupdates();
+           // glutTimerFunc(10000, daynightmodechanger, 0);
+
+            glutPostRedisplay();
+            // glutDisplayFunc(day);
+            //day();
+            break;
+        case 'n':
+            //glClearColor(0.0,0.0,0.0,1.0);
+            isDay = false;
+          //  glutDisplayFunc(output);
+            //allupdates();
+        //    glutTimerFunc(10000, daynightmodechanger, 0);
+
+            glutPostRedisplay();
+            break;
+        case 'f': //toggle screenmode
+            fullscreen = !fullscreen;
+            if (fullscreen) {
+            glutFullScreen();
+    } else {
+        glutReshapeWindow(1200, 900);
+        glutPositionWindow(0,0);
+    }
+    break;
+        }
+        
+    }
+
 void CarTire()
 {
     //Tires
@@ -257,6 +296,7 @@ void update(int value)
 {
 
     _angle1 += 1.0f;
+    _boatMove += 1;
     glutPostRedisplay(); //Notify GLUT that the display has changed
 
     glutTimerFunc(20, update, 0); //Notify GLUT to call update again in 25 milliseconds
@@ -2910,15 +2950,15 @@ class NikliHaor
             glPopMatrix();
         }
     }
-    //void boatUpdate(int value)
-    //{
+    // void boatUpdate(int value)
+    // {
 
     //    _boatMove += 1;
     //    glutPostRedisplay(); //Notify GLUT that the display has changed
 
     //    glutTimerFunc(20, boatUpdate, 0);
 
-    //}
+    // }
 
     void Container(float x, float y)
     {
@@ -3348,6 +3388,7 @@ class NikliHaor
         CarForward();
         fullBadh3layer();
         ScaledBoat2();
+        allupdates();
         //nightEffect();
       // glDisable(GL_LIGHTING);//Enable Light Effect
 
@@ -3355,6 +3396,7 @@ class NikliHaor
     }
     void allupdates()
     {
+        
         glutTimerFunc(20, update, 0); //Add a timer
         /*glutTimerFunc(20, carupdate, 0);
         glutTimerFunc(20, boatUpdate, 0);*/
@@ -3368,34 +3410,7 @@ class NikliHaor
         //glutTimerFunc(500, daynightmodechanger, 0);
     }
 
-    void handleKeypress(unsigned char key, int x, int y) {
-
-        switch (key) {
-
-        case 'd':
-
-            //glClearColor(1.0,1.0,1.0,1.0);
-            isDay = true;
-           // glutDisplayFunc(output);
-            //allupdates();
-           // glutTimerFunc(10000, daynightmodechanger, 0);
-
-            glutPostRedisplay();
-            // glutDisplayFunc(day);
-            //day();
-            break;
-        case 'n':
-            //glClearColor(0.0,0.0,0.0,1.0);
-            isDay = false;
-          //  glutDisplayFunc(output);
-            //allupdates();
-        //    glutTimerFunc(10000, daynightmodechanger, 0);
-
-            glutPostRedisplay();
-            break;
-        }
-    }
-
+ 
 };
 class Village
 {
@@ -5623,22 +5638,52 @@ void show()
 
 
 }
-
-void displayCity()
+void displayHighway()
 {
 
 }
+void redisplayHighway()
+{
+    
+}
+void displayCity()
+{
+    CityScape obj;
+    obj.CityView();
+}
 void redisplayCity()
 {
+    glutDestroyWindow(1);
+    glClearColor(0.63f, 0.85f, 0.85f, 0.0f); // Set background color to black and opaque
+    glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)
+    glutInitWindowSize(1200, 1200);
+    glutCreateWindow("Journey By Car Animation"); // Create a window with the given title
+    gluOrtho2D(0, 500, 0, 500);
+    glutFullScreen();
+    glutDisplayFunc(displayCity); // Register display callback handler for window re-paint
+    glutSpecialFunc(SpecialInput);
+    //glutKeyboardFunc(handleKeypress);
 
 }
 
 void displayHaor()
 {
+    NikliHaor obj;
+    obj.output();
 
 }
 void redisplayHaor()
 {
+    glutDestroyWindow(1);
+    glClearColor(0.63f, 0.85f, 0.85f, 0.0f); // Set background color to black and opaque
+    glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)
+    glutInitWindowSize(640, 640);
+    glutCreateWindow("Journey By Car Animation"); // Create a window with the given title
+    gluOrtho2D(0, 500, 0, 500);
+    glutFullScreen();
+    glutDisplayFunc(displayHaor); // Register display callback handler for window re-paint
+    glutSpecialFunc(SpecialInput);
+    glutKeyboardFunc(handleKeypress);
     
 }
 void  displayVillage()
@@ -5657,6 +5702,7 @@ void redisplayVillage()
     glutInitWindowSize(640, 640);
     glutCreateWindow("Journey By Car Animation"); // Create a window with the given title
     gluOrtho2D(0, 500, 0, 500);
+    glutFullScreen();
     glutDisplayFunc(displayVillage); // Register display callback handler for window re-paint
     glutSpecialFunc(SpecialInput);
 
@@ -5670,11 +5716,11 @@ case GLUT_KEY_UP:
 redisplayVillage();
 break;
 case GLUT_KEY_DOWN:
-std::cout<<"Down";
+redisplayHaor();
  //glutDisplayFunc(display2);
 break;
 case GLUT_KEY_LEFT:
-   glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+redisplayCity();
 break;
 case GLUT_KEY_RIGHT:
 //do something here
@@ -5693,6 +5739,7 @@ int main(int argc, char** argv)
     glutInitWindowSize(640, 640);
     glutCreateWindow("Journey By Car Animation"); // Create a window with the given title
     gluOrtho2D(0, 500, 0, 500);
+    glutFullScreen();
     glutDisplayFunc(show); // Register display callback handler for window re-paint
     glutTimerFunc(20, update, 0); //Add a timer
     glutTimerFunc(20,carupdate,0);
