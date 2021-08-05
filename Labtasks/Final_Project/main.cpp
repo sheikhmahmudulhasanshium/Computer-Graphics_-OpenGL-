@@ -302,11 +302,97 @@ void update(int value)
     glutTimerFunc(20, update, 0); //Notify GLUT to call update again in 25 milliseconds
 }
 
+void update1(int value)
+    {
+
+        // std::cout << "updated called";
+
+        _angle2 -= 1.0f;
+        glutPostRedisplay(); //Notify GLUT that the display has changed
+
+        glutTimerFunc(20, update, 0); //Notify GLUT to call update again in 25 milliseconds
+    }
+
 class CityScape
 {
 
 public :
     CityScape() {}
+    void star()
+    {
+        glLineWidth(2);
+        glBegin(GL_LINES);
+        glColor3ub(255, 251, 251);//white-star
+        glVertex2f(-0.075, 0);
+        glVertex2f(0.075, 0);
+
+        glVertex2f(-0.05, -0.075);
+        glVertex2f(0.05, 0.075);
+
+        glVertex2f(0.05, -0.075);
+        glVertex2f(-0.05, 0.075);
+
+        glVertex2f(0, -0.1);
+        glVertex2f(0, 0.1);
+
+        glEnd();
+    }
+    void scaledstar()
+    {
+        glMatrixMode(GL_MODELVIEW);
+        glPushMatrix();
+        glTranslatef(05, 490, 0);
+        glScalef(15, 15, 0);
+        star();
+        glPopMatrix();
+    }
+    void scaledstarLoop()
+    {
+        scaledstar();
+        glMatrixMode(GL_MODELVIEW);
+        glPushMatrix();
+        glTranslatef(5, 0, 0);
+
+        for (int i = 0; i < 3; i++)
+        {
+            glTranslatef(0, -20, 0);
+            scaledstar();
+            for (int i = 0; i < 40; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    glTranslatef(15, -35, 0);
+                    scaledstar();
+                }
+                else
+                {
+                    glTranslatef(18, 35, 0);
+                    scaledstar();
+                }
+
+            }
+            glTranslatef(-660, -35, 0);
+
+        }
+        glPopMatrix();
+    }
+    void sky()
+    {
+        {
+
+            glBegin(GL_QUADS);
+            glColor3ub(7, 11, 52);
+            glVertex2f(0, 300);
+            glColor3ub(0, 0, 55);
+            glVertex2f(500, 300);
+            glColor3ub(43, 47, 19);
+            glVertex2f(500, 500);
+            glColor3ub(20, 24, 82);
+            glVertex2f(0, 500);
+            glEnd();
+            scaledstarLoop();
+        }
+    }
     void Road()
     {
         int x = 0, y = 0;
@@ -1462,7 +1548,7 @@ public :
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
         glScalef(0.5, 0.5, 1);
-        glTranslatef((_angle1 / 2) % 1000, 0, 0);
+        glTranslatef((_angle1) % 500, 0, 0);
         glPushMatrix();
         glTranslatef(-100, 0, 0);
         cloud();
@@ -1480,7 +1566,7 @@ public :
         glPushMatrix();
         glTranslatef(142.5, 450, 0);
         glScalef(0.3, 0.4, 1);
-        glTranslatef((_angle1 / 5) % 500, 0, 0);
+        glTranslatef((_angle1 ) % 500, 0, 0);
         // glTranslated(a, c, 0.0);
         glColor3f(1.0, 1.0, 1.0);
         glBegin(GL_POLYGON); //rectangular body
@@ -1888,6 +1974,7 @@ public :
 
     void CityView()
     {
+        sky();
         Background();
         movingCloude();
         plane();
@@ -3388,21 +3475,21 @@ class NikliHaor
         CarForward();
         fullBadh3layer();
         ScaledBoat2();
-        allupdates();
+        //allupdates();
         //nightEffect();
       // glDisable(GL_LIGHTING);//Enable Light Effect
 
         glFlush();
     }
-    void allupdates()
-    {
+    // void allupdates()
+    // {
         
-        glutTimerFunc(20, update, 0); //Add a timer
-        /*glutTimerFunc(20, carupdate, 0);
-        glutTimerFunc(20, boatUpdate, 0);*/
+    //     glutTimerFunc(20, boatupdate, 0); //Add a timer
+    //     /*glutTimerFunc(20, carupdate, 0);
+    //     glutTimerFunc(20, boatUpdate, 0);*/
 
-    }
-    void daynightmodechanger(int val)
+    // }
+     void daynightmodechanger(int val)
     {
         //isDay=false;
        // glutDisplayFunc(output);
@@ -4559,7 +4646,7 @@ class Village
     {
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
-        glTranslatef(_angle1, 0.0f, 0.0f);
+        glTranslatef((_angle1%20), 0.0f, 0.0f);
         float pi = 3.1416;
         float r = 50;
         for (int waveCol = 0; waveCol < 10; waveCol++)
@@ -4600,7 +4687,7 @@ class Village
             // Wave(.1, 20, 1, 1);
              //waveY=waveY+100;
         }
-        glEnd();
+       // glEnd();
 
     }
     void Corn()
@@ -4870,7 +4957,7 @@ class Village
         glPushMatrix();
 
         glTranslatef(255, 360, 0);
-        glRotatef(_angle2, 0.0f, 0.0f, 1.0f);
+        glRotatef(_angle1, 0.0f, 0.0f, 1.0f);
         glTranslatef(-255, -360, 0);
 
 
@@ -4894,16 +4981,7 @@ class Village
         glPopMatrix();
 
     }
-    void update1(int value)
-    {
-
-        // std::cout << "updated called";
-
-        _angle2 -= 1.0f;
-        glutPostRedisplay(); //Notify GLUT that the display has changed
-
-        glutTimerFunc(20, update, 0); //Notify GLUT to call update again in 25 milliseconds
-    }
+    
     //void carupdate(int value)
     //{
     //    _carangle += 1;
@@ -5640,11 +5718,20 @@ void show()
 }
 void displayHighway()
 {
-
+    Highway obj;
+    obj.showHighway();
 }
 void redisplayHighway()
 {
-    
+    glutDestroyWindow(1);
+    glClearColor(0.63f, 0.85f, 0.85f, 0.0f); // Set background color to black and opaque
+    glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)
+    glutInitWindowSize(1200, 1200);
+    glutCreateWindow("Journey By Car Animation"); // Create a window with the given title
+    gluOrtho2D(0, 500, 0, 500);
+    glutFullScreen();
+    glutDisplayFunc(displayHighway); // Register display callback handler for window re-paint
+    glutSpecialFunc(SpecialInput);
 }
 void displayCity()
 {
@@ -5723,8 +5810,7 @@ case GLUT_KEY_LEFT:
 redisplayCity();
 break;
 case GLUT_KEY_RIGHT:
-//do something here
-   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+redisplayHighway();
 
 break;
 }
