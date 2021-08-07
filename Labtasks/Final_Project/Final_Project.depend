@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1628316784 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\final_project\main.cpp
+1628322364 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\final_project\main.cpp
 	<windows.h>
 	<GL/glut.h>
 	<math.h>

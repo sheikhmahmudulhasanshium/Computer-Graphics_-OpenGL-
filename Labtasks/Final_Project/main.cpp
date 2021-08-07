@@ -223,7 +223,7 @@ void TruckBody()
     glEnd();
 
     glBegin(GL_POLYGON);      //mirror
-    glColor3f(0, 0, 0.1373); 
+    glColor3f(0, 0, 0.1373);
     //glColor3ub(255,250,0);
     glVertex2f(211.5, 134.5);
     glVertex2f(204.5, 135.5);
@@ -281,7 +281,7 @@ void TruckThrust()
         glVertex2f(110-50, 97);
         glEnd();
     }
-    
+
 
 }
 void fullTruck()
@@ -548,7 +548,7 @@ void CarThrust()
 }
 void fullCar()
 {
-    
+
     CarBody();
     ScaledTire();
     glPushMatrix();
@@ -1890,14 +1890,16 @@ public :
 
     void movingCloude()
     {
-
         glPushMatrix();
         glTranslatef(60, 400, 0);
 
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
         glScalef(0.5, 0.5, 1);
-        glTranslatef((_angle1) % 500, 0, 0);
+        cloud();
+        glTranslatef(200, 35, 0);
+        cloud();
+        glTranslatef((_angle1/2) % 1000, 0, 0);
         glPushMatrix();
         glTranslatef(-100, 0, 0);
         cloud();
@@ -1913,9 +1915,9 @@ public :
     void plane()
     {
         glPushMatrix();
-        glTranslatef(142.5, 450, 0);
+        glTranslatef(-142.5, 450, 0);
         glScalef(0.3, 0.4, 1);
-        glTranslatef((_angle1 ) % 500, 0, 0);
+        glTranslatef((_angle1 ) % 2500, 0, 0);
         // glTranslated(a, c, 0.0);
         glColor3f(1.0, 1.0, 1.0);
         glBegin(GL_POLYGON); //rectangular body
@@ -2351,7 +2353,7 @@ public :
         MovingScaledTruckReverse();
         glTranslatef(0,10,0);
         MovingScaledCarReverse();
-        
+
         glPopMatrix();
         footpath();
         scaledlight();
@@ -3863,7 +3865,7 @@ class Village
 
     void Roadbody()
     {
-        int x = 0, y = 0;
+        //int x = 0, y = 0;
 
 
         glBegin(GL_POLYGON);
@@ -5724,7 +5726,7 @@ class Highway
         MovingScaledTruckReverse();
         glTranslatef(0,10,0);
         MovingScaledCarReverse();
-        
+
         glPopMatrix();
         glPopMatrix();
         glFlush();
@@ -5737,10 +5739,6 @@ void show()
     glClearColor(0.63f, 0.85f, 0.85f, 0.0f); // Set background color to black and opaque
     glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)
 
-    /*CityScape city;
-    city.CityView();*/
-    Village obj;
-   // obj.showvillage();
     Highway obj1;
     obj1.showHighway();
 
