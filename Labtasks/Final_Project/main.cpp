@@ -5718,6 +5718,14 @@ class Highway
         glPushMatrix();
         glTranslatef(0,20,0);
         MovingScaledCarForward();
+        glMatrixMode(GL_MODELVIEW);
+        glPushMatrix();
+        glTranslatef(100,40,0);
+        MovingScaledTruckReverse();
+        glTranslatef(0,10,0);
+        MovingScaledCarReverse();
+        
+        glPopMatrix();
         glPopMatrix();
         glFlush();
         glutSwapBuffers();
