@@ -1,11 +1,8 @@
 # depslib dependency file v1.0
-1628316784 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\final_project\main.cpp
+1628308096 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\truck\main.cpp
 	<windows.h>
 	<GL/glut.h>
 	<math.h>
-	<iostream>
-	<cstring>
-	<stdlib.h>
 
 1301111162 c:\program files (x86)\codeblocks\mingw\include\windows.h
 	<winresrc.h>
