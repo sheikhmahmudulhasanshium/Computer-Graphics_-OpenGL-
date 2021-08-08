@@ -1294,7 +1294,7 @@ public :
     {
         glMatrixMode(GL_MODELVIEW);
 
-        //Building_1
+        //Building_1//C001
         glColor3ub(91, 0, 91);
         glBegin(GL_POLYGON);
         glVertex2f(0, 340);
@@ -1318,7 +1318,7 @@ public :
 
         }
 
-        //building_2
+        //building_2//C002
         glColor3ub(55, 0, 55);
         glBegin(GL_POLYGON);
         glVertex2f(50, 315);
@@ -1335,7 +1335,7 @@ public :
 
         }
 
-        //Building_3
+        //Building_3//C003
         glColor3ub(91, 0, 91);
         glBegin(GL_POLYGON);
         glVertex2f(105, 330);
@@ -1373,7 +1373,7 @@ public :
             }
 
         }
-        //Building_4
+        //Building_4//C004
         glColor3ub(55, 0, 55);
         glBegin(GL_POLYGON);
         glVertex2f(160, 288);
@@ -1389,7 +1389,7 @@ public :
             }
 
         }
-        //Building_5
+        //Building_5//C005
         glColor3ub(55, 0, 55);
         glBegin(GL_POLYGON);
         glVertex2f(200, 305);
@@ -1405,7 +1405,7 @@ public :
             }
 
         }
-        //Building_6
+        //Building_6//C006
         for (int i = 300; i < 350; i++)
         {
             if (i % 5 == 0)
@@ -1439,7 +1439,7 @@ public :
 
         }
 
-        //Building_7
+        //Building_7//C007
         glColor3ub(55, 0, 55);
         glBegin(GL_POLYGON);
         glVertex2f(250, 260);
@@ -1454,7 +1454,7 @@ public :
         glVertex2f(253, 255);
         glEnd();
 
-        //Building_8
+        //Building_8//C008
         glColor3ub(91, 0, 91);
         glBegin(GL_POLYGON);
         glVertex2f(275, 315);
@@ -1503,7 +1503,7 @@ public :
 
         }
 
-        //Building_9
+        //Building_9//C009
         glPushMatrix();
         glTranslatef(92, 0, 0);
         glColor3ub(55, 0, 55);
@@ -1524,7 +1524,7 @@ public :
         glEnd();
         glPopMatrix();
 
-        //Building_10
+        //Building_10//C010
         glPushMatrix();
         glTranslatef(203, 0, 0);
         for (int i = 300; i < 350; i++)
@@ -1569,7 +1569,7 @@ public :
 
         }
         glPopMatrix();
-        //Building_11
+        //Building_11//C011
         glPushMatrix();
         glTranslatef(227, 0, 0);
         glColor3ub(55, 0, 55);
@@ -1591,7 +1591,7 @@ public :
 
         }
         glPopMatrix();
-        //Building_12
+        //Building_12//C012
         glPushMatrix();
         glTranslatef(275, 0, 0);
         glColor3ub(55, 0, 55);
@@ -1610,7 +1610,7 @@ public :
 
         }
         glPopMatrix();
-        //Building_13
+        //Building_13//C013
         glPushMatrix();
         glTranslatef(350, 0, 0);
         glColor3ub(91, 0, 91);
@@ -5366,6 +5366,136 @@ class Highway
         glEnd();
     }
 
+
+void Plane2() {
+glBegin(GL_QUADS);   // body
+glColor3ub(255, 255, 255);
+glVertex2f(.666f,-.435f);
+glVertex2f(.5f,-.262f);
+glVertex2f(-.6f,-.262f);
+glVertex2f(-.166f,-.435f);
+glEnd();
+
+glBegin(GL_QUADS); //cockpit
+glColor3ub(0, 0, 0);
+if(!isDay)glColor3ub(1, 1, 0);
+glVertex2f(.579f,-.353f);
+glVertex2f(.546f,-.318f);
+glVertex2f(.466f,-.318f);
+glVertex2f(.466f,-.353f);
+glEnd();
+
+//windows
+glBegin(GL_QUADS);
+glColor3ub(0, 0, 0);
+if(!isDay)glColor3ub(1, 1, 0);
+glVertex2f(.308f,-.353f);
+glVertex2f(.308f,-.318f);
+glVertex2f(.278f,-.318f);
+glVertex2f(.278f,-.353f);
+glEnd();
+
+
+glBegin(GL_QUADS);
+glColor3ub(0, 0, 0);
+if(!isDay)glColor3ub(1, 1, 0);
+glVertex2f(.258f,-.353f);
+glVertex2f(.258f,-.318f);
+glVertex2f(.218f,-.318f);
+glVertex2f(.218f,-.353f);
+glEnd();
+
+
+glBegin(GL_QUADS);
+glColor3ub(0, 0, 0);
+if(!isDay)glColor3ub(1, 1, 0);
+glVertex2f(.188f,-.353f);
+glVertex2f(.188f,-.318f);
+glVertex2f(.158f,-.318f);
+glVertex2f(.158f,-.353f);
+glEnd();
+
+glBegin(GL_QUADS);
+glColor3ub(0, 0, 0);
+if(!isDay)glColor3ub(1, 1, 0);
+glVertex2f(.128f,-.353f);
+glVertex2f(.128f,-.318f);
+glVertex2f(.098f,-.318f);
+glVertex2f(.098f,-.353f);
+glEnd();
+
+
+glBegin(GL_QUADS);
+glColor3ub(0, 0, 0);
+if(!isDay)glColor3ub(1, 1, 0);
+glVertex2f(.078f,-.353f);
+glVertex2f(.078f,-.318f);
+glVertex2f(.048f,-.318f);
+glVertex2f(.048f,-.353f);
+glEnd();
+
+glBegin(GL_QUADS);
+glColor3ub(0, 0, 0);
+if(!isDay)glColor3ub(1, 1, 0);
+glVertex2f(.018f,-.353f);
+glVertex2f(.018f,-.318f);
+glVertex2f(-.008f,-.318f);
+glVertex2f(-.008f,-.353f);
+glEnd();
+
+//wings last
+glBegin(GL_QUADS);
+glColor3f(1, 0, 0);
+glVertex2f(-.464f,-.1f);
+glVertex2f(-.464f,-.262f);
+glVertex2f(-.302f,-.262f);
+glVertex2f(-.398f,-.1f);
+glEnd();
+
+glBegin(GL_QUADS); //Cross line
+glColor3f(1, 0, 0);
+glVertex2f(-.384f,-.262f);
+glVertex2f(-.464f,-.262f);
+glVertex2f(-.02f,-.435f);
+glVertex2f(.06f,-.435f);
+glEnd();
+
+
+//Wings down
+glBegin(GL_QUADS);
+glColor3f(1, 0, 0);
+glVertex2f(.308f,-.383f);
+glVertex2f(.108f,-.383f);
+glVertex2f(-.278f,-.628f);
+glVertex2f(-.274f,-.628f);
+glEnd();
+
+//Wings up
+glBegin(GL_QUADS);
+glColor3f(1, 0, 0);
+glVertex2f(.148f,-.262f);
+glVertex2f(.305f,-.262f);
+glVertex2f(-.108f,-.015f);
+glVertex2f(-.107f,-.01f);
+glEnd();
+}
+
+void scaledPlane2(float x,float y,float a,float b)
+//void scaledPlane2()
+{
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glScalef(a,b,0);//scale:a,b//position:x,y
+    //glScalef(0.1,0.1,0);
+    glTranslatef(x,y,0);
+    Plane2();
+    glPopMatrix();
+}
+void displayPlane2()
+{
+    scaledPlane2(1.5,9.8,50.1,50.1);//scale:a,b//position:x,y
+    //scaledPlane2();
+}
     void sky()
     {
         glBegin(GL_QUADS);
@@ -5566,6 +5696,7 @@ class Highway
 
         glEnd();
     }
+
     void Grassloop()
     {
         glMatrixMode(GL_MODELVIEW);
@@ -5692,7 +5823,7 @@ class Highway
         glLineWidth(5);
 
         sky();
-
+        
         circle(175, 440, 20);
         if (!isDay)
         {
@@ -5708,7 +5839,6 @@ class Highway
         SmallMountain(335, 07);
         //scaledMountain();
         Mountain();
-
         outliner();
         field();
         Road();
@@ -5726,9 +5856,9 @@ class Highway
         MovingScaledTruckReverse();
         glTranslatef(0,10,0);
         MovingScaledCarReverse();
-
         glPopMatrix();
         glPopMatrix();
+        displayPlane2();
         glFlush();
         glutSwapBuffers();
     }
@@ -5756,6 +5886,7 @@ void redisplayHighway()
     glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)
     glutInitWindowSize(1200, 1200);
     glutCreateWindow("Journey By Car Animation"); // Create a window with the given title
+    //gluOrtho2D(-500, 1500, -500, 1500);
     gluOrtho2D(0, 500, 0, 500);
     glutFullScreen();
     glutDisplayFunc(displayHighway); // Register display callback handler for window re-paint
@@ -5865,6 +5996,7 @@ int main(int argc, char** argv)
     glutTimerFunc(20, MoveTruckReverse, 0);
 
     glutSpecialFunc(SpecialInput);
+    //glLoadIdentity();
     glutMainLoop();           // Enter the event-processing loop
     return 0;
 }
