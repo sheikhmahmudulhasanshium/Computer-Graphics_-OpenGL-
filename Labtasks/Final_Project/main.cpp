@@ -32,6 +32,8 @@ int _carMove=0;
 int _carangle = 0;
 float _angle2 = 1;
 int _boatMove = 0;
+int _planeMove = 0;
+int _planeMove2 = 0;
 bool isDay = true;
 bool fullscreen=true;
    void handleKeypress(unsigned char key, int x, int y) {
@@ -343,6 +345,16 @@ void TruckTireRotate(int value)
 
     glutTimerFunc(05, TruckTireRotate, 0); //Notify GLUT to call update again in 25 milliseconds
 }
+   void updatePlane2(int value)
+    {
+        _planeMove2+=10;
+ 
+
+       
+
+        glutPostRedisplay(); //Notify GLUT that the display has changed
+        glutTimerFunc(20, updatePlane2, 0);
+    }
 void MoveTruckReverse(int value) {
 
 
@@ -5369,7 +5381,9 @@ class Highway
 
 void Plane2() {
 glBegin(GL_QUADS);   // body
-glColor3ub(255, 255, 255);
+glColor3ub(255,255,255);
+if(!isDay)
+glColor3ub(0, 55, 55);
 glVertex2f(.666f,-.435f);
 glVertex2f(.5f,-.262f);
 glVertex2f(-.6f,-.262f);
@@ -5378,7 +5392,7 @@ glEnd();
 
 glBegin(GL_QUADS); //cockpit
 glColor3ub(0, 0, 0);
-if(!isDay)glColor3ub(1, 1, 0);
+if(!isDay)glColor3ub(255, 255, 0);
 glVertex2f(.579f,-.353f);
 glVertex2f(.546f,-.318f);
 glVertex2f(.466f,-.318f);
@@ -5388,7 +5402,7 @@ glEnd();
 //windows
 glBegin(GL_QUADS);
 glColor3ub(0, 0, 0);
-if(!isDay)glColor3ub(1, 1, 0);
+if(!isDay)glColor3ub(255, 255, 0);
 glVertex2f(.308f,-.353f);
 glVertex2f(.308f,-.318f);
 glVertex2f(.278f,-.318f);
@@ -5398,7 +5412,7 @@ glEnd();
 
 glBegin(GL_QUADS);
 glColor3ub(0, 0, 0);
-if(!isDay)glColor3ub(1, 1, 0);
+if(!isDay)glColor3ub(255, 255, 0);
 glVertex2f(.258f,-.353f);
 glVertex2f(.258f,-.318f);
 glVertex2f(.218f,-.318f);
@@ -5408,7 +5422,7 @@ glEnd();
 
 glBegin(GL_QUADS);
 glColor3ub(0, 0, 0);
-if(!isDay)glColor3ub(1, 1, 0);
+if(!isDay)glColor3ub(255, 255, 0);
 glVertex2f(.188f,-.353f);
 glVertex2f(.188f,-.318f);
 glVertex2f(.158f,-.318f);
@@ -5417,7 +5431,7 @@ glEnd();
 
 glBegin(GL_QUADS);
 glColor3ub(0, 0, 0);
-if(!isDay)glColor3ub(1, 1, 0);
+if(!isDay)glColor3ub(255, 255, 0);
 glVertex2f(.128f,-.353f);
 glVertex2f(.128f,-.318f);
 glVertex2f(.098f,-.318f);
@@ -5427,7 +5441,7 @@ glEnd();
 
 glBegin(GL_QUADS);
 glColor3ub(0, 0, 0);
-if(!isDay)glColor3ub(1, 1, 0);
+if(!isDay)glColor3ub(255, 255, 0);
 glVertex2f(.078f,-.353f);
 glVertex2f(.078f,-.318f);
 glVertex2f(.048f,-.318f);
@@ -5436,7 +5450,7 @@ glEnd();
 
 glBegin(GL_QUADS);
 glColor3ub(0, 0, 0);
-if(!isDay)glColor3ub(1, 1, 0);
+if(!isDay)glColor3ub(255, 255, 0);
 glVertex2f(.018f,-.353f);
 glVertex2f(.018f,-.318f);
 glVertex2f(-.008f,-.318f);
@@ -5488,14 +5502,19 @@ void scaledPlane2(float x,float y,float a,float b)
     glScalef(a,b,0);//scale:a,b//position:x,y
     //glScalef(0.1,0.1,0);
     glTranslatef(x,y,0);
+    
     Plane2();
     glPopMatrix();
 }
 void displayPlane2()
 {
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef((_planeMove2/6)%800,0,0);
     scaledPlane2(1.5,9.8,50.1,50.1);//scale:a,b//position:x,y
-    //scaledPlane2();
+    glPopMatrix();    
 }
+
     void sky()
     {
         glBegin(GL_QUADS);
@@ -5814,6 +5833,7 @@ void displayPlane2()
         glEnable(GL_COLOR_MATERIAL);
         glColor4f(1.0f, 0.0f, 0.0f, 0.0f);
     }
+
   public:
     void showHighway()
     {
@@ -5828,7 +5848,7 @@ void displayPlane2()
         if (!isDay)
         {
             scaledstarLoop();
-            nightEffect(); /* code */
+            // nightEffect(); /* code */
         }
 
         Border();
@@ -5878,9 +5898,16 @@ void displayHighway()
 {
     Highway obj;
     obj.showHighway();
+    //  glutTimerFunc(20, updatePlane2, 0);
 }
 void redisplayHighway()
 {
+    //   if (!isDay)
+    // {
+    //     std::cout << "Night Mode" << std::endl;
+    //     /* code */
+    //     glutDisplayFunc(displayHighway);
+    // }else{
     glutDestroyWindow(1);
     glClearColor(0.63f, 0.85f, 0.85f, 0.0f); // Set background color to black and opaque
     glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)
@@ -5892,6 +5919,8 @@ void redisplayHighway()
     glutDisplayFunc(displayHighway); // Register display callback handler for window re-paint
     glutSpecialFunc(SpecialInput);
     glutKeyboardFunc(handleKeypress);
+    // }
+        // glutPostRedisplay();
 }
 void displayCity()
 {
@@ -5992,9 +6021,9 @@ int main(int argc, char** argv)
     glutTimerFunc(20, update, 0); //Add a timer
     glutTimerFunc(20,MoveCarForward,0);//moves car forward
     glutTimerFunc(20,TireRotate,0);//moves tire forward
-   glutTimerFunc(20, TruckTireRotate, 0); //Add a timer
+    glutTimerFunc(20, TruckTireRotate, 0); //Add a timer
     glutTimerFunc(20, MoveTruckReverse, 0);
-
+    glutTimerFunc(20, updatePlane2, 0);
     glutSpecialFunc(SpecialInput);
     //glLoadIdentity();
     glutMainLoop();           // Enter the event-processing loop
