@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1628367270 source:e:\semesters\semester-6\final-term\computer graphics\project\washington bridge\main.cpp
+1628923500 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\final_project_test\main.cpp
 	<windows.h>
 	<GL/glut.h>
 	<math.h>
-	<cstdio>
-	<GL/gl.h>
-	<cctype>
+	<iostream>
+	<cstring>
+	<stdlib.h>
 
 1301111162 c:\program files (x86)\codeblocks\mingw\include\windows.h
 	<winresrc.h>
@@ -224,17 +224,4 @@
 
 1341006774 c:\program files (x86)\codeblocks\mingw\include\math.h
 	<_mingw.h>
-
-1628260000 source:g:\cg 6th sem\washington bridge\main.cpp
-	<windows.h>
-	<GL/glut.h>
-	<math.h>
-	<cstdio>
-	<GL/gl.h>
-
-1628529348 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\washington bridge\main.cpp
-	<windows.h>
-	<GL/glut.h>
-	<math.h>
-	<GL/gl.h>
 
