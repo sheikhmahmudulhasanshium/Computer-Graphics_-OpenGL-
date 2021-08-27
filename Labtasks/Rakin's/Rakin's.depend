@@ -1,10 +1,9 @@
 # depslib dependency file v1.0
-1628701241 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\thunder2\main.cpp
-	<Windows.h>
-	<cstdio>
-	<GL/gl.h>
-	<GL/glut.h>
+1629299608 source:d:\aiub\semester-7\finalterm\cg\practice\labtasks\rakin's\main.cpp
 	<iostream>
+	<windows.h>
+	<GL/glut.h>
+	<math.h>
 
 1301111162 c:\program files (x86)\codeblocks\mingw\include\windows.h
 	<winresrc.h>
@@ -210,14 +209,17 @@
 1301111156 c:\program files (x86)\codeblocks\mingw\include\oleidl.h
 	<objfwd.h>
 
-1301111164 c:\program files (x86)\codeblocks\mingw\include\gl\gl.h
-
 976692172 c:\program files (x86)\codeblocks\mingw\include\gl\glut.h
 	<windows.h>
 	<GL/gl.h>
 	<GL/glu.h>
 
+1301111164 c:\program files (x86)\codeblocks\mingw\include\gl\gl.h
+
 1301111164 c:\program files (x86)\codeblocks\mingw\include\gl\glu.h
 	<stddef.h>
 	<GL/gl.h>
+
+1341006774 c:\program files (x86)\codeblocks\mingw\include\math.h
+	<_mingw.h>
 
