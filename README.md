@@ -2,7 +2,7 @@
 
 Credit: S.A. Saharukh, Md. Mahabub Islam, Namira Khorshed Khan, Sheikh Mahmudul Hasan Shium.
 
-Youtube: https://www.youtube.com/watch?v=vRN0AEQDb0A&ab_channel=SheikhMahmudulHasanShiumShium
+Youtube: https://youtu.be/vRN0AEQDb0A
 
 Music: https://www.youtube.com/watch?v=cJZ_d94RSPQ
 
