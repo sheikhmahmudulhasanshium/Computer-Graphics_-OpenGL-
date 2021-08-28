@@ -1,4 +1,4 @@
-Computer Graphics Project
+#Computer Graphics Project
 
 Credit: S.A. Saharukh, Md. Mahabub Islam, Namira Khorshed Khan, Sheikh Mahmudul Hasan Shium.
 
