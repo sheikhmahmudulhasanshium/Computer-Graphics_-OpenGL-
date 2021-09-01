@@ -1,69 +1,118 @@
+#include <windows.h> // for MS Windows
+#include <GL/glut.h> // GLUT, include glu.h and gl.h
+#include<math.h>>
+#include <GL/gl.h>
+# define PI           3.14159265358979323846 //For circle
 
-#include <windows.h>  // for MS Windows
-#include <GL/glut.h>  // GLUT, include glu.h and gl.h
+void rainView();
 
-/* Handler for window-repaint event. Call back when the window first appears and
-whenever the window needs to be re-painted. */
-int _raindrop=0.0;
+GLfloat rainPos = 0.0f;
+GLfloat rainSpd = 0.05f;
+void Circlerain(GLfloat a, GLfloat b, GLdouble r,int R,int G,int B);
+void rainFall();
+void rainAnimation(int value);
 
-void rainDrop() {
-glBegin(GL_LINES);              // Each set of 4 vertices form a quad
-	glColor3f(1.0f, 1.0f, 1.0f); // white
-    glVertex2f(5.0f, 490.0f);    // x, y
-	glVertex2f(4.0f,485);    // x, y
-	glEnd();
-}
-void rainDropLoop()
+
+void rainView()
 {
-    glMatrixMode(GL_MODELVIEW);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
     glPushMatrix();
-    //rainDrop();
-    for(int raincol=0;raincol<100;raincol++)
+    glTranslatef(0,rainPos,0);
+    rainFall();
+    glPopMatrix();
+
+    glFlush();
+}
+void Circlerain(GLfloat a, GLfloat b, GLdouble r,int R,int G,int B)
+{
+    int i;
+
+    GLfloat x=a;
+    GLfloat y=b;
+    GLdouble radius =r;
+    int triangleAmount = 60;
+
+    GLfloat twicePi = 0.2f * PI;
+
+    glBegin(GL_TRIANGLE_FAN);
+    glColor3ub(R, G, B);
+    glVertex2f(x, y);
+    for(i = 0; i <= triangleAmount; i++)
     {
-        glTranslatef(10,0,0);
-        rainDrop();
-        for(int rainrow=0;rainrow<40;rainrow++)
-        {
-            glTranslatef(0,-25,0);
-            rainDrop();
-        }
-        glTranslatef(-0,1000,0);
+        glVertex2f(
+            x + (radius * sin(i *  twicePi / triangleAmount)),
+            y + 5*(radius * cos(i * twicePi / triangleAmount))
+        );
     }
-    glPopMatrix();
-}
-void displayRainDrops()
-{
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    //float y=(_raindrop)% 500;
-    glTranslatef(0, (-_raindrop/2)% 500, 0);
-    rainDropLoop();
-    glPopMatrix();
-}
-void rainDropMove(int value)
-{
-    _raindrop+=10;
-    glutPostRedisplay(); //Notify GLUT that the display has changed
-    glutTimerFunc(20, rainDropMove, 0);
-}
-void display() {
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set background color to black and opaque
-	glClear(GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)
-	glLineWidth(1.5);
-	// Draw a Red 1x1 Square centered at origin
-
-	glFlush();  // Render now
-	glutSwapBuffers();
+    glEnd();
 }
 
-/* Main function: GLUT runs as a console application starting at main()  */
-int main(int argc, char** argv) {
-	glutInit(&argc, argv);                 // Initialize GLUT
-	glutCreateWindow("OpenGL Setup"); // Create a window with the given title
-	glutInitWindowSize(320, 320);   // Set the window's initial width & height
-	gluOrtho2D(0,500,0,500);
-	glutDisplayFunc(display); // Register display callback handler for window re-paint
-	glutTimerFunc(20, rainDropMove, 0);
-	glutMainLoop();           // Enter the event-processing loop
-	return 0;
+void rainAnimation(int value)
+{
+
+    if(rainPos <-5)
+        rainPos = -4;
+
+    rainPos -= rainSpd;
+
+    glutPostRedisplay();
+
+
+    glutTimerFunc(100, rainAnimation, 0);
 }
+
+void rainFall()
+{
+    //Circlerain(0,-0.5,0.01,190, 217, 244);'
+
+    int cnt = 0;
+    float posY = 0.99;
+
+    for(int i=0; i<100; i++)
+    {
+        float posX = -1.5;
+
+        for(int j=0; j<15; j++)
+        {
+            if(cnt%4==0)
+            {
+                posX +=0.33;
+            }
+            else if(cnt%3==0)
+            {
+                posX +=0.25;
+            }
+            else
+            {
+                posX +=0.15;
+            }
+            Circlerain(posX,posY,0.008,240, 240, 240);
+            Circlerain(posX,posY,0.005,198, 222, 245);
+
+
+            cnt++;
+
+        }
+        posY +=0.2;
+
+    }
+
+}
+int main(int argc, char** argv)
+{
+    glutInit(&argc, argv);
+    glutCreateWindow("Test");
+    glutInitWindowSize(320, 320);
+    gluOrtho2D(0,500,0,500);
+
+    glutDisplayFunc(rainView);
+
+    glutTimerFunc(100, rainAnimation, 0);
+
+    glutMainLoop();
+
+    return 0;
+}
+
